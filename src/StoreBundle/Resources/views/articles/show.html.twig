@@ -1,0 +1,54 @@
+{% extends 'StoreBundle::base.html.twig' %}
+
+{% block body %}
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+        <h1>Articles</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td><img src="/uploads/documents/{{ article.imagePath }}" alt="image" style=height:150px;"></td>
+                    </tr>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{ article.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Code</th>
+                        <td>{{ article.code }}</td>
+                    </tr>
+                    <tr>
+                        <th>Catagory</th>
+                        <td>{{ article.catagory }}</td>
+                    </tr>
+                    <tr>
+                        <th>Imagepath</th>
+                        <td>{{ article.imagePath }}</td>
+                    </tr>
+                    <tr>
+                        <th>Price</th>
+                        <td>{{ article.price }}</td>
+                    </tr>
+                    <tr>
+                        <th>Dateadd</th>
+                        <td>{% if article.dateAdd %}{{ article.dateAdd|date('Y-m-d H:i:s') }}{% endif %}</td>
+                    </tr>
+                    <tr>
+                        <th>Dateedit</th>
+                        <td>{% if article.dateEdit %}{{ article.dateEdit|date('Y-m-d H:i:s') }}{% endif %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <a href="{{ path('articles_index') }}"><button type="button" class="btn btn-info col-lg-2 right">Back to List</button></a>
+    <a href="{{ path('articles_edit', { 'id': article.id }) }}"><button type="button" class="btn btn-primary center-block col-lg-3">Edit</button></a>
+    {{ form_start(delete_form) }}
+        <button type="submit" class="btn pull-right btn-danger">Delete</button>
+    {{ form_end(delete_form) }}
+{% endblock %}

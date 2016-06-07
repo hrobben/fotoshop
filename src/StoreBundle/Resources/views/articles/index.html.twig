@@ -1,0 +1,50 @@
+{% extends 'StoreBundle::base.html.twig' %}
+
+{% block body %}
+
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+    <h1>Articles list</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Code</th>
+                    <th>Catagory</th>
+                    <th>Imagepath</th>
+                    <th>Price</th>
+                    <th>Dateadd</th>
+                    <th>Dateedit</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for article in articles %}
+                <tr>
+                    <td><a href="{{ path('articles_show', { 'id': article.id }) }}">{{ article.id }}</a></td>
+                    <td>{{ article.code }}</td>
+                    <td>{{ article.catagory }}</td>
+                    <td><img src="/uploads/documents/{{ article.imagePath }}" alt="image" style=height:60px;"></td>
+                    <td>{{ article.price }}</td>
+                    <td>{% if article.dateAdd %}{{ article.dateAdd|date('Y-m-d H:i:s') }}{% endif %}</td>
+                    <td>{% if article.dateEdit %}{{ article.dateEdit|date('Y-m-d H:i:s') }}{% endif %}</td>
+                    <td>
+                         <a href="{{ path('articles_show', { 'id': article.id }) }}"><button type="button" class="btn btn-xs btn-info">show</button></a>
+                         <a href="{{ path('articles_edit', { 'id': article.id }) }}"><button type="button" class="btn btn-xs btn-primary">edit</button></a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        </div>
+    </div>
+
+        <a href="{{ path('articles_new') }}"><button type="button" class="btn btn-primary">New Article</button></a>
+
+{% endblock %}

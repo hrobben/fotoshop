@@ -1,0 +1,17 @@
+{% extends 'StoreBundle::base.html.twig' %}
+
+{% block body %}
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+        <h1>Articles</h1>
+    </div>
+
+    {% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button type="submit" class="btn btn-primary">Create</button>
+    {{ form_end(form) }}
+
+    <a href="{{ path('articles_index') }}"><button type="button" class="btn btn-info">Back to List</button></a>
+
+{% endblock %}

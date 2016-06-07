@@ -1,0 +1,24 @@
+{% extends '@Store/base.html.twig' %}
+
+{% block body %}
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+        <h3>Kies uw foto!</h3>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table">
+                {% for article in articles %}
+                    <tr>
+                        <td><img src="/uploads/documents/{{ article.imagePath }}" alt="afbeelding is niet geladen, Sorry!" style=width:160px;"></td>
+                        <td>
+                            <a href="{{ path('articles_show', { 'id': article.id }) }}"><button type="button" class="btn btn-info">In winkelwagen!</button></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+
+{%  endblock %}
