@@ -2,15 +2,17 @@
 
 {% block body %}
 
-
+    {% if is_granted("ROLE_ADMIN") %}
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
     <h1>Articles list</h1>
     </div>
 
+    <a href="{{ path('articles_new') }}"><button type="button" class="btn btn-primary">New Article</button></a>
+
     <div class="row">
         <div class="col-md-6">
-            <table class="table">
+            <table class="table table-responsive">
             <thead>
                 <tr>
                     <th>Id</th>
@@ -29,7 +31,7 @@
                     <td><a href="{{ path('articles_show', { 'id': article.id }) }}">{{ article.id }}</a></td>
                     <td>{{ article.code }}</td>
                     <td>{{ article.catagory }}</td>
-                    <td><img src="/uploads/documents/{{ article.imagePath }}" alt="image" style=height:60px;"></td>
+                    <td><img src="/uploads/documents/{{ article.imagePath }}" alt="image" style=width:60px;"></td>
                     <td>{{ article.price }}</td>
                     <td>{% if article.dateAdd %}{{ article.dateAdd|date('Y-m-d H:i:s') }}{% endif %}</td>
                     <td>{% if article.dateEdit %}{{ article.dateEdit|date('Y-m-d H:i:s') }}{% endif %}</td>
@@ -46,5 +48,8 @@
     </div>
 
         <a href="{{ path('articles_new') }}"><button type="button" class="btn btn-primary">New Article</button></a>
+    {% else %}
+        <h3>U dient eerst als adminUser aanmelden!</h3>
+    {% endif %}
 
 {% endblock %}

@@ -1,6 +1,7 @@
 {% extends 'StoreBundle::base.html.twig' %}
 
 {% block body %}
+    {% if is_granted("ROLE_ADMIN") %}
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
         <h1>Articles</h1>
@@ -13,5 +14,8 @@
     {{ form_end(form) }}
 
     <a href="{{ path('articles_index') }}"><button type="button" class="btn btn-info">Back to List</button></a>
+    {% else %}
+        <h3>U dient eerst als adminUser aanmelden!</h3>
+    {% endif %}
 
 {% endblock %}

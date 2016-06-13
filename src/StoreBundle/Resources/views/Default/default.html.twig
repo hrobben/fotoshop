@@ -6,14 +6,17 @@
         <h3>Kies uw foto!</h3>
     </div>
 
+    <a href="{{ path('cart') }}"><button type="button" class="btn btn-info pull-right">Shopping Cart</button></a>
+
     <div class="row">
         <div class="col-md-6">
             <table class="table">
                 {% for article in articles %}
                     <tr>
                         <td><img src="/uploads/documents/{{ article.imagePath }}" alt="afbeelding is niet geladen, Sorry!" style=width:160px;"></td>
+                        <td><b>€{{ article.price | number_format(2) }}</b></td>
                         <td>
-                            <a href="{{ path('articles_show', { 'id': article.id }) }}"><button type="button" class="btn btn-info">In winkelwagen!</button></a>
+                            <a href="{{ path('cart_add', { 'id': article.id }) }}"><button type="button" class="btn btn-success">Add one!</button></a>
                         </td>
                     </tr>
                 {% endfor %}

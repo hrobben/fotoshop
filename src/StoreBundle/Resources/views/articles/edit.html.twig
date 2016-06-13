@@ -7,14 +7,15 @@
     </div>
 
 {% if is_granted("ROLE_ADMIN") %}
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Current image</label>
+        <div class="col-sm-10"><img src="/uploads/documents/{{ article.imagePath }}" alt="image not found!" style=width:200px;"></div>
+        <p>.</p>
+    </div>
     {% form_theme edit_form 'bootstrap_3_horizontal_layout.html.twig' %}
     {{ form_start(edit_form) }}
-        <tr>
-            <td class="label pull-right col-lg-2">current image: </td>
-            <td class="img-responsive pull-right"><img src="/uploads/documents/{{ article.imagePath }}" alt="image" style=height:150px;"></td>
-        </tr><br>
         {{ form_widget(edit_form) }}
-        <button type="submit" class="btn btn-primary center-block col-lg-3">Edit</button>
+        <button type="submit" class="btn btn-primary center-block col-lg-3">Save</button>
     {{ form_end(edit_form) }}
 
     <a href="{{ path('articles_index') }}"><button type="button" class="btn btn-info col-lg-2 right">Back to List</button></a>
@@ -22,7 +23,7 @@
     <button type="submit" class="btn btn-danger pull-right">Delete</button>
     {{ form_end(delete_form) }}
 {% else %}
-    <h3>U dient eerst de login te doen!</h3>
+    <h3>U dient eerst als adminUser aanmelden!</h3>
 {% endif %}
 
 {% endblock %}

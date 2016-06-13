@@ -65,7 +65,6 @@ class Articles
      */
     private $dateEdit;
 
-
     /**
      * @Assert\File(maxSize="6000000")
      */

@@ -1,0 +1,57 @@
+{% extends '@Store/base.html.twig' %}
+
+{% block body %}
+    <h1>"ID-College" SHOPPING-CART</h1>
+
+    <ul class="thumbnails">
+
+        {% if empty %}
+            <h5>Your shopping cart is empty.</h5>
+        {% endif %}
+        {% set cart = app.session.get('cart') %}
+
+
+        {% if product %}
+
+
+            <div class="row">
+                <div class="col-md-6">
+                    <table class="table table-responsive">
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Quantity</th>
+                            <th>Code</th>
+                            <th>Price</th>
+                            <th>Delete</th>
+                         </tr>
+                        </thead>
+                        <tbody>
+
+                {% for key, item in cart %}
+                    <tr>
+                    <td>{{ key }}</td>
+                    <td>{{ item }}</td>
+
+
+                    {% for item in product %}
+                        <td>{{ item.code }}</td>
+                        <td>{{ item.price }}</td>
+                    {% endfor %}
+
+                    <td><a href="{{ path('cart_remove', {'id': key}) }}"><button class="btn btn-danger">Remove</button></a></td>
+                    </tr>
+                {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+        {% endif %}
+    </ul>
+
+    <a href="{{ path('start') }}"><button type="button" class="btn btn-info col-lg-2 right">Go on shopping!</button></a>
+
+
+{% endblock %}
